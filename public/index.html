@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Pull &amp; Push Tracker</title>
+
+  <!-- PWA / add-to-home-screen -->
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#b45309">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Workout">
+  <link rel="apple-touch-icon" href="/icons/icon-192.png">
+  <link rel="icon" href="/icons/icon-192.png">
+
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<div class="wrap">
+  <h1>Pull &amp; Push Tracker</h1>
+  <div class="sub">4 sets, aiming for 8 reps each. Beat last week by at least one rep.</div>
+
+  <div class="tabs">
+    <div class="tab" data-w="pull">Pull day</div>
+    <div class="tab" data-w="push">Push day</div>
+  </div>
+
+  <div class="date-row">
+    <label style="font-size:0.85rem;color:var(--muted);">Session date</label>
+    <input type="date" id="sessionDate">
+  </div>
+
+  <div class="rule-box">
+    <b>The rule:</b> 4 sets of 8 reps per move. Hit 8/8/8/8? Go up a touch next time (+2kg or the next dumbbell). Fall short of 8 on any set? You're in the sweet spot &mdash; note the number and beat it by at least one rep next time.
+  </div>
+
+  <div id="exercises"></div>
+
+  <div class="savebar">
+    <button class="savebtn" id="saveBtn">Save session</button>
+  </div>
+
+  <div class="history-toggle" id="historyToggle">Show recent history &darr;</div>
+  <div id="historyList" style="display:none;"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="/app.js"></script>
+</body>
+</html>
