@@ -1,6 +1,6 @@
 {
-  "name": "Pull & Push Tracker",
-  "short_name": "Workout",
+  "name": "Push and pull with Brad",
+  "short_name": "Push/Pull",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#171715",

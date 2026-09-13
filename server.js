@@ -13,7 +13,25 @@ db.defaults({ sessions: [] }).write();
 
 const app = express();
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "public")));
+
+// Icons and the manifest change rarely but need to update immediately when they
+// do (e.g. swapping the home-screen icon) — never let browsers/CDNs cache them
+// long-term. Everything else in /public gets a short cache window.
+app.use(
+  express.static(path.join(__dirname, "public"), {
+    setHeaders: (res, filePath) => {
+      if (
+        filePath.includes(`${path.sep}icons${path.sep}`) ||
+        filePath.endsWith("manifest.json") ||
+        filePath.endsWith("sw.js")
+      ) {
+        res.setHeader("Cache-Control", "no-cache, must-revalidate");
+      } else {
+        res.setHeader("Cache-Control", "public, max-age=300");
+      }
+    },
+  })
+);
 
 // GET /api/sessions?workout=pull&before=2026-09-13&limit=5
 // Used to find the most recent session(s) before a given date, per workout.
