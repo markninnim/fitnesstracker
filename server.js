@@ -27,6 +27,23 @@ app.get("/api/sessions", (req, res) => {
   res.json(rows);
 });
 
+// GET /api/sessions/by-id/:id  - exact lookup, used to load a session for editing
+app.get("/api/sessions/by-id/:id", (req, res) => {
+  const row = db.get("sessions").find({ id: req.params.id }).value();
+  if (!row) return res.status(404).json({ error: "not found" });
+  res.json(row);
+});
+
+// GET /api/sessions/all?workout=pull  - full history for one workout, used for streaks/sparklines
+app.get("/api/sessions/all", (req, res) => {
+  const { workout, limit } = req.query;
+  let rows = db.get("sessions").value();
+  if (workout) rows = rows.filter((r) => r.workout === workout);
+  rows = [...rows].sort((a, b) => (a.date < b.date ? 1 : -1));
+  if (limit) rows = rows.slice(0, parseInt(limit, 10));
+  res.json(rows);
+});
+
 // GET /api/sessions/history?limit=10
 app.get("/api/sessions/history", (req, res) => {
   const limit = parseInt(req.query.limit, 10) || 10;

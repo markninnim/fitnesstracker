@@ -21,7 +21,10 @@
 <div class="wrap">
   <div class="header-block">
     <img src="/brad.jpg" alt="Brad" class="brand-photo">
-    <h1 class="brand">Exercise with <span class="brand-name">Brad</span></h1>
+    <div>
+      <h1 class="brand">Exercise with <span class="brand-name">Brad</span></h1>
+      <div id="streak" class="streak"></div>
+    </div>
   </div>
   <div class="sub">4 sets, aiming for 8 reps each. Beat last week by at least one rep.</div>
 
@@ -33,6 +36,7 @@
   <div class="date-row">
     <label style="font-size:0.85rem;color:var(--muted);">Session date</label>
     <input type="date" id="sessionDate">
+    <span id="editingBadge" class="editing-badge" style="display:none;">editing saved session</span>
   </div>
 
   <div class="rule-box">
@@ -50,6 +54,15 @@
 </div>
 
 <div class="toast" id="toast"></div>
+
+<div class="rest-timer" id="restTimer" style="display:none;">
+  <div class="rest-label">Rest</div>
+  <div class="rest-clock" id="restClock">1:30</div>
+  <div class="rest-actions">
+    <button id="restAdd30">+30s</button>
+    <button id="restSkip">Skip</button>
+  </div>
+</div>
 
 <script src="/app.js"></script>
 </body>
